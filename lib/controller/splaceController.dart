@@ -13,7 +13,7 @@ class Splacecontroller extends GetxController {
   @override
   void onInit() {
     Timer(Duration(seconds: 3), () {
-      Get.offAll(SignupScreen());
+      Get.offAll(WelcomeScreen());
     });
     super.onInit();
   }

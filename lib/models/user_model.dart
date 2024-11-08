@@ -28,7 +28,7 @@ class UserModel {
   });
 
   // Factory constructor for creating a new UserModel instance from a map
-  factory UserModel.fromJson(Map<String, dynamic> json) {
+  factory UserModel.fromMap(Map<String, dynamic> json) {
     return UserModel(
       uId: json['uId'] as String,
       username: json['username'] as String,
@@ -39,14 +39,17 @@ class UserModel {
       country: json['country'] as String,
       userAddress: json['userAddress'] as String,
       street: json['street'] as String,
-      isAdmin: json['isAdmin'] == 'true',
-      isActive: json['isActive'] == 'true',
+      isAdmin:
+          json['isAdmin'] is bool ? json['isAdmin'] : json['isAdmin'] == 'true',
+      isActive: json['isActive'] is bool
+          ? json['isActive']
+          : json['isActive'] == 'true',
       createOn: DateTime.parse(json['createOn'] as String),
     );
   }
 
   // Method to convert UserModel instance to a JSON map
-  Map<String, dynamic> toJson() {
+  Map<String, dynamic> toMap() {
     return {
       'uId': uId,
       'username': username,
@@ -57,9 +60,9 @@ class UserModel {
       'country': country,
       'userAddress': userAddress,
       'street': street,
-      'isAdmin': isAdmin.toString(),
-      'isActive': isActive.toString(),
-      'createOn': createOn.toIso8601String(),
+      'isAdmin': isAdmin,
+      'isActive': isActive,
+      'createOn': createOn,
     };
   }
 }
