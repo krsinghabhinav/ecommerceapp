@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecommerceapp/models/user_model.dart';
 import 'package:ecommerceapp/screen/user-panel/main-screen.dart';
+import 'package:ecommerceapp/utils/app-constant.dart';
 import 'package:ecommerceapp/utils/toastmessage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -33,19 +34,19 @@ class GoogleSigninController extends GetxController {
 
         if (user != null) {
           UserModel userModel = UserModel(
-            uId: user.uid,
-            username: user.displayName.toString(),
-            email: user.email.toString(),
-            phone: user.phoneNumber.toString(),
-            userImg: user.photoURL.toString(),
-            userDeviceToken: '',
-            country: '',
-            userAddress: '',
-            street: '',
-            isAdmin: false,
-            isActive: true,
-            createOn: DateTime.now(),
-          );
+              uId: user.uid,
+              username: user.displayName.toString(),
+              email: user.email.toString(),
+              phone: user.phoneNumber.toString(),
+              userImg: user.photoURL.toString(),
+              userDeviceToken: '',
+              country: '',
+              userAddress: '',
+              street: '',
+              isAdmin: false,
+              isActive: true,
+              createOn: DateTime.now(),
+              city: "");
           await FirebaseFirestore.instance
               .collection("users")
               .doc(user.uid)
@@ -56,8 +57,7 @@ class GoogleSigninController extends GetxController {
       }
     } catch (e) {
       EasyLoading.dismiss();
-
-      toastMessage('Failed SignIn $e', Colors.red);
+      toastMessage('Failed SignIn $e', AppConstant.appSecondaryColor);
     }
   }
 }

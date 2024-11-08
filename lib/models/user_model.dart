@@ -11,6 +11,7 @@ class UserModel {
   final bool isAdmin;
   final bool isActive;
   final DateTime createOn;
+  final String city;
 
   UserModel({
     required this.uId,
@@ -25,6 +26,7 @@ class UserModel {
     required this.isAdmin,
     required this.isActive,
     required this.createOn,
+    required this.city,
   });
 
   // Factory constructor for creating a new UserModel instance from a map
@@ -37,6 +39,7 @@ class UserModel {
       userImg: json['userImg'] as String,
       userDeviceToken: json['userDeviceToken'] as String,
       country: json['country'] as String,
+      city: json['country'] as String,
       userAddress: json['userAddress'] as String,
       street: json['street'] as String,
       isAdmin:
@@ -58,6 +61,7 @@ class UserModel {
       'userImg': userImg,
       'userDeviceToken': userDeviceToken,
       'country': country,
+      'city': city,
       'userAddress': userAddress,
       'street': street,
       'isAdmin': isAdmin,

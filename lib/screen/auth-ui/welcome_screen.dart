@@ -78,27 +78,32 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 height: Get.height / 35,
               ),
               Material(
-                child: Container(
-                  height: Get.height / 16,
-                  width: Get.width / 1.2,
-                  decoration: BoxDecoration(
-                      color: AppConstant.appSecondaryColor,
-                      borderRadius: BorderRadius.circular(10)),
-                  child: TextButton.icon(
-                    onPressed: () {
-                      Get.to(SignInScreen());
-                    },
-                    icon: Padding(
-                        padding: const EdgeInsets.only(right: 8),
-                        child: Icon(
-                          Icons.email,
-                          size: 35,
-                          color: AppConstant.appTextColor,
-                        )),
-                    label: Text(
-                      "Sign in with email",
-                      style: TextStyle(
-                          color: AppConstant.appTextColor, fontSize: 18),
+                child: GestureDetector(
+                  onTap: () {
+                    Get.to(SignInScreen());
+                  },
+                  child: Container(
+                    height: Get.height / 16,
+                    width: Get.width / 1.2,
+                    decoration: BoxDecoration(
+                        color: AppConstant.appSecondaryColor,
+                        borderRadius: BorderRadius.circular(10)),
+                    child: TextButton.icon(
+                      onPressed: () {
+                        Get.to(SignInScreen());
+                      },
+                      icon: Padding(
+                          padding: const EdgeInsets.only(right: 8),
+                          child: Icon(
+                            Icons.email,
+                            size: 35,
+                            color: AppConstant.appTextColor,
+                          )),
+                      label: Text(
+                        "Sign in with email",
+                        style: TextStyle(
+                            color: AppConstant.appTextColor, fontSize: 18),
+                      ),
                     ),
                   ),
                 ),

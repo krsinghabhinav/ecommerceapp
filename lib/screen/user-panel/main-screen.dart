@@ -1,5 +1,6 @@
 import 'package:ecommerceapp/screen/auth-ui/welcome_screen.dart';
 import 'package:ecommerceapp/utils/app-constant.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -31,9 +32,11 @@ class _MainScreenState extends State<MainScreen> {
                 borderRadius: BorderRadius.circular(10),
               ),
               child: IconButton(
-                  onPressed: () {
+                  onPressed: () async {
+                    FirebaseAuth _auth = FirebaseAuth.instance;
                     GoogleSignIn googleSignIn = GoogleSignIn();
-                    googleSignIn.signOut();
+                    await googleSignIn.signOut();
+                    await _auth.signOut();
                     Get.offAll(WelcomeScreen());
                   },
                   icon: Icon(Icons.logout)),

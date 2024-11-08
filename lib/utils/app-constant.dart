@@ -7,4 +7,5 @@ class AppConstant {
   static const appSecondaryColor = Color(0xFF981206);
   static const appTextColor = Color(0xFFFBF5F4);
   static const appStatusBarColor = Color(0xFFFBF5F4);
+  static const toastColor = Color.fromARGB(255, 0, 0, 0);
 }
