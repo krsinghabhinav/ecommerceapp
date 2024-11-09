@@ -1,5 +1,5 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
-import 'package:ecommerceapp/controller/signup_controller.dart';
+import 'package:ecommerceapp/controller/authcontroller/signup_controller.dart';
 import 'package:ecommerceapp/screen/auth-ui/sign_in_screen.dart';
 import 'package:ecommerceapp/utils/toastmessage.dart';
 import 'package:firebase_auth/firebase_auth.dart';

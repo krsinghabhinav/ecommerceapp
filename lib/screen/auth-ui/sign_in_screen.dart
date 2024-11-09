@@ -1,5 +1,6 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
-import 'package:ecommerceapp/controller/signinConntroller.dart';
+import 'package:ecommerceapp/controller/authcontroller/signinConntroller.dart';
+import 'package:ecommerceapp/screen/auth-ui/forgetpassword_screen.dart';
 import 'package:ecommerceapp/screen/auth-ui/signup_screen.dart';
 import 'package:ecommerceapp/screen/user-panel/main-screen.dart';
 import 'package:ecommerceapp/utils/app-constant.dart';
@@ -121,15 +122,20 @@ class _SignInScreenState extends State<SignInScreen> {
                           ),
                         )),
                   ),
-                  Container(
-                    alignment: Alignment.bottomRight,
-                    margin: EdgeInsets.symmetric(horizontal: 10),
-                    child: Text(
-                      "Forget Password?",
-                      style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w500,
-                          color: AppConstant.appSecondaryColor),
+                  GestureDetector(
+                    onTap: () {
+                      Get.to(ForgetpasswordScreen());
+                    },
+                    child: Container(
+                      alignment: Alignment.bottomRight,
+                      margin: EdgeInsets.symmetric(horizontal: 10),
+                      child: Text(
+                        "Forget Password?",
+                        style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w500,
+                            color: AppConstant.appSecondaryColor),
+                      ),
                     ),
                   ),
                   SizedBox(
