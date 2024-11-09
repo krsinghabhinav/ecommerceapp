@@ -1,5 +1,6 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:ecommerceapp/controller/authcontroller/signinConntroller.dart';
+import 'package:ecommerceapp/screen/admin-panel/admin_main_screen.dart';
 import 'package:ecommerceapp/screen/auth-ui/forgetpassword_screen.dart';
 import 'package:ecommerceapp/screen/auth-ui/signup_screen.dart';
 import 'package:ecommerceapp/screen/user-panel/main-screen.dart';
@@ -13,6 +14,8 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 
+import '../../controller/authcontroller/get_user_data_controller.dart';
+
 class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key});
 
@@ -22,6 +25,8 @@ class SignInScreen extends StatefulWidget {
 
 class _SignInScreenState extends State<SignInScreen> {
   Signinconntroller signinconntroller = Get.put(Signinconntroller());
+  GetUserDataController getUserDataController =
+      Get.put(GetUserDataController());
   TextEditingController userEmailController = TextEditingController();
   TextEditingController userPasswordController = TextEditingController();
   @override
@@ -160,19 +165,30 @@ class _SignInScreenState extends State<SignInScreen> {
                             UserCredential? userCredential =
                                 await signinconntroller.signInMethode(
                                     email, password);
+                            var userData = await getUserDataController
+                                .getUserData(userCredential!.user!.uid);
+
+                            // ignore: unnecessary_null_comparison
                             if (userCredential != null) {
                               if (userCredential.user!.emailVerified) {
-                                toastMessage("Login Successfully",
-                                    AppConstant.appSecondaryColor,
-                                    gravity: ToastGravity.CENTER);
-                                Get.offAll(MainScreen());
+                                if (userData[0]['isAdmin'] == true) {
+                                  toastMessage("Admin Successfully Login",
+                                      AppConstant.greenColor,
+                                      gravity: ToastGravity.CENTER);
+                                  Get.offAll(AdminMainScreen());
+                                } else {
+                                  toastMessage("User Successfully Login",
+                                      AppConstant.greenColor,
+                                      gravity: ToastGravity.CENTER);
+                                  Get.offAll(MainScreen());
+                                }
                               } else {
                                 toastMessage("Firstlly Varify your email",
                                     AppConstant.toastColor,
                                     gravity: ToastGravity.TOP);
                               }
                             } else {
-                              toastMessage("Please try again",
+                              toastMessage("Please try again login",
                                   AppConstant.appSecondaryColor,
                                   gravity: ToastGravity.CENTER);
                             }

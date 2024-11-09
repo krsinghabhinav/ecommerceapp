@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:ecommerceapp/controller/authcontroller/get_device_token_controller.dart';
 import 'package:ecommerceapp/models/user_model.dart';
 import 'package:ecommerceapp/screen/user-panel/main-screen.dart';
 import 'package:ecommerceapp/utils/app-constant.dart';
@@ -14,6 +15,8 @@ class GoogleSigninController extends GetxController {
   final GoogleSignIn googleSignIn = GoogleSignIn();
 
   Future<void> signInwithGoogle() async {
+    final GetDeviceTokenController getDeviceTokenController =
+        Get.put(GetDeviceTokenController());
     try {
       final GoogleSignInAccount? googleSignInAccount =
           await googleSignIn.signIn();
@@ -39,7 +42,7 @@ class GoogleSigninController extends GetxController {
               email: user.email.toString(),
               phone: user.phoneNumber.toString(),
               userImg: user.photoURL.toString(),
-              userDeviceToken: '',
+              userDeviceToken: getDeviceTokenController.deviceToken.toString(),
               country: '',
               userAddress: '',
               street: '',

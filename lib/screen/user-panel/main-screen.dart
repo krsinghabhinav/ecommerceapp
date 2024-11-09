@@ -1,3 +1,4 @@
+import 'package:ecommerceapp/screen/auth-ui/sign_in_screen.dart';
 import 'package:ecommerceapp/screen/auth-ui/welcome_screen.dart';
 import 'package:ecommerceapp/utils/app-constant.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -37,7 +38,7 @@ class _MainScreenState extends State<MainScreen> {
                     GoogleSignIn googleSignIn = GoogleSignIn();
                     await googleSignIn.signOut();
                     await _auth.signOut();
-                    Get.offAll(WelcomeScreen());
+                    Get.offAll(SignInScreen());
                   },
                   icon: Icon(Icons.logout)),
             ),

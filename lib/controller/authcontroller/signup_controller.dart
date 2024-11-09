@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:ecommerceapp/controller/authcontroller/get_device_token_controller.dart';
 import 'package:ecommerceapp/models/user_model.dart';
 import 'package:ecommerceapp/utils/app-constant.dart';
 import 'package:ecommerceapp/utils/toastmessage.dart';
@@ -9,7 +10,8 @@ import 'package:get/get.dart';
 class SignupController extends GetxController {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-
+  final GetDeviceTokenController getDeviceTokenController =
+      Get.put(GetDeviceTokenController());
   var isPasswordVisible = false.obs;
 
   Future<UserCredential?> signUpMethode(
@@ -26,13 +28,14 @@ class SignupController extends GetxController {
           await _auth.createUserWithEmailAndPassword(
               email: userEmail, password: userPassword);
       await userCredential.user!.sendEmailVerification();
+
       UserModel userModel = UserModel(
           uId: userCredential.user!.uid,
           username: userName,
           email: userEmail,
           phone: userPhone,
           userImg: "",
-          userDeviceToken: userDeviceToken,
+          userDeviceToken: getDeviceTokenController.deviceToken.toString(),
           country: "",
           city: userCity,
           userAddress: "",
